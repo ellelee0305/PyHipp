@@ -80,10 +80,10 @@ class Waveform(DPT.DPObject):
         DPT.DPObject.append(self, wf)  # append self.setidx and self.dirs
         self.data = self.data + wf.data
 
-        for ar in wf.array.dict:
+        for ar in wf.array_dict:
             self.array_dict[ar] = self.numSets
         self.numSets += 1
-        
+
         # .........................................
         # ..................code...................
         # .........................................
