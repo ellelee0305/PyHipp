@@ -47,6 +47,13 @@ class Waveform(DPT.DPObject):
         # .........................................
         
         pwd = os.path.normpath(os.getcwd());
+        aname = DPT.levels.normpath(os.path.dirname(pwd))
+        self.array_dict = dict()
+        self.array_dict[aname] = 0
+        self.numSets = 1
+        self.current_plot_type = None
+
+
         # 'channelxxx, xxx is the number of the channel'
         self.channel_filename = [os.path.basename(pwd)]  
         template_filename = os.path.join(
@@ -72,6 +79,11 @@ class Waveform(DPT.DPObject):
         # It is useful to store the information of the objects for panning through in the future
         DPT.DPObject.append(self, wf)  # append self.setidx and self.dirs
         self.data = self.data + wf.data
+
+        for ar in wf.array.dict:
+            self.array_dict[ar] = self.numSets
+        self.numSets += 1
+        
         # .........................................
         # ..................code...................
         # .........................................
